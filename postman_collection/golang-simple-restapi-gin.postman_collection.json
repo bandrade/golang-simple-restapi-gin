@@ -68,6 +68,30 @@
 				}
 			},
 			"response": []
+		},
+		{
+			"name": "Edit Student",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\":\"Bruno 2\",\n    \"cpf\":\"1231231231\",\n    \"rg\":\"1412412412\"\n}"
+				},
+				"url": {
+					"raw": "http://localhost:5000/students/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "5000",
+					"path": [
+						"students",
+						"2"
+					]
+				}
+			},
+			"response": []
 		}
 	]
 }
