@@ -14,7 +14,7 @@ func ListStudents(c *gin.Context) {
 	c.JSON(http.StatusOK, students)
 }
 
-func FindStudent(c *gin.Context) {
+func FindStudentById(c *gin.Context) {
 	var student models.Student
 	id := c.Params.ByName("id")
 	database.DB.First(&student, id)
@@ -26,6 +26,17 @@ func FindStudent(c *gin.Context) {
 	}
 }
 
+func FindStudentByCpf(c *gin.Context) {
+	var student models.Student
+	cpf := c.Params.ByName("cpf")
+	database.DB.Where(&models.Student{CPF: cpf}).First(&student)
+	if student.ID == 0 {
+		c.JSON(http.StatusNotFound, gin.H{
+			"Not Found": "Student not found"})
+	} else {
+		c.JSON(http.StatusOK, student)
+	}
+}
 func EditStudent(c *gin.Context) {
 	var student models.Student
 	id := c.Params.ByName("id")
