@@ -26,6 +26,14 @@ func FindStudent(c *gin.Context) {
 	}
 }
 
+func DeleteStudent(c *gin.Context) {
+	var student models.Student
+	id := c.Params.ByName("id")
+	database.DB.Delete(&student, id)
+	c.JSON(http.StatusOK, gin.H{
+		"data": "Student removed with success"})
+}
+
 func CreateStudent(c *gin.Context) {
 	var student models.Student
 	if err := c.ShouldBindJSON(&student); err != nil {
